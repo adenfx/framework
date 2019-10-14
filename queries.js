@@ -53,7 +53,7 @@ const cariCstmr = (request,response) =>{
         const cariAksesoris = (request,response) =>{
             const id_aksesoris = request.params.id
                 pool.query('SELECT * FROM aksesoris WHERE id_aksesoris =$1',
-                [2], (error,results)=>{
+                [3], (error,results)=>{
                     if(error){
                         throw error
                     }
