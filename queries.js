@@ -79,7 +79,7 @@ const cariCstmr = (request,response) =>{
                     })
                 }
         const cariHarga = (request,response) =>{
-            //  const harga = request.params.id
+              const harga = request.params.id
                  pool.query('select laptop.nama_laptop,laptop.harga_laptop,aksesoris.nama_aksesoris,aksesoris.harga_aksesoris from laptop,aksesoris where laptop.id_laptop=aksesoris.id_aksesoris', 
                  (error,results)=>{
                     if(error){
@@ -89,12 +89,12 @@ const cariCstmr = (request,response) =>{
                     })
                 };
 
-        const createLaptop =(Request,response)=>{
-            // console.log('log:', request.body);
+        const createLaptop =(request,response)=>{
+             console.log('log:', request.body);
             const data = {
                 id_laptop : request.body.id_laptop,
                 nama_laptop : request.body.nama_laptop,
-                harga_laptop : request.body.harga_laptop,
+                harga_laptop : request.body.harga_laptop
 
             };
             const values=[
@@ -103,7 +103,7 @@ const cariCstmr = (request,response) =>{
                 data.harga_laptop
             ];
             console.log('id_laptop:', values)
-            pool.query('insert into laptop(id_laptop, nama_laptop, harga_laptop) values ($1,$2,$3)'), 
+            pool.query('insert into laptop (id_laptop, nama_laptop, harga_laptop) values ($1,$2,$3)', 
             values,
             (error,results)=>{
                 if (error){
@@ -112,7 +112,9 @@ const cariCstmr = (request,response) =>{
                 response.send('masuk');
                 console.log('user:', results.rows[0]);
             }
-        }
+            )
+            
+        };
 
 
 module.exports = {
